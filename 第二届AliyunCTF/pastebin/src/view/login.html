@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet" nonce="{{ .Nonce }}">
+    <!-- jQuery -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js" nonce="{{ .Nonce }}"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.min.js" nonce="{{ .Nonce }}"></script>
+    <style nonce="{{ .Nonce }}">
+        .form-container {
+            max-width: 60%;
+            margin: 0 auto;
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+<div class="container">
+    <div class="text-center" style="margin-top: 10%">
+        <h1>Aliyun CTF Pastebin</h1>
+    </div>
+
+    <div class="form-container">
+        <!-- Aliyun CTF logo or any other related image -->
+
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Login</h2>
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <label for="registerUsername">Username</label>
+                        <input type="text" class="form-control" id="registerUsername" placeholder="Enter username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" placeholder="Password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+                {{ if .ErrMsg }}
+                <div style="margin-top:3%">
+                    <div id="errorMessage" class="alert alert-danger">{{ .ErrMsg }}</div>
+                </div>
+                {{ end }}
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
