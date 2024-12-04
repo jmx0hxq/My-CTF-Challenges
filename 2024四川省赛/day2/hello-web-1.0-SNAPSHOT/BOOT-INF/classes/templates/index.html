@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        #jumpButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #jumpButton:hover {
+            background-color: #0056b3;
+        }
+        #jumpButton2 {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #jumpButton:hover {
+            background-color: #0056b3;
+        }
+        #jumpButton3 {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #jumpButton:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .links {
+            margin-top: 20px;
+        }
+        .links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>欢迎来到我的网站</h1>
+    <p>This is an example page that shows how to create a centered page layout using HTML and CSS.</p>
+    <p>Click the button below to jump to the upload page, or browse the link below to learn more information.</p>
+
+    <button id="jumpButton" onclick="window.location.href='/upload'">跳转到上传页面</button>
+    <button id="jumpButton2" onclick="window.location.href='/info'">查看相关信息</button>
+    <button id="jumpButton3" onclick="window.location.href='/api/listfile'">文件列表</button>
+    <div class="links">
+        <a href="https://www.example.com/about">关于我们</a>
+        <a href="https://www.example.com/services">我们的服务</a>
+        <a href="https://www.example.com/contact">联系我们</a>
+    </div>
+</div>
+
+<script>
+</script>
+
+</body>
+</html>

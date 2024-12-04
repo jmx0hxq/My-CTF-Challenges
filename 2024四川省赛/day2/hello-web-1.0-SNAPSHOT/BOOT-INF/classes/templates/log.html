@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Log Viewer</title>
+    <!-- 这里可以添加CSS样式或其他头部信息 -->
+</head>
+<body>
+<h1>Log File Viewer</h1>
+<div>
+    <h2>Log Content:</h2>
+    <!-- 使用Thymeleaf的表达式语言来显示日志内容 -->
+    <pre th:text="${log}"></pre>
+</div>
+
+<!-- 如果有错误信息，显示它 -->
+<div th:if="${error}" class="error">
+    <h3>Error:</h3>
+    <p th:text="${error}"></p>
+</div>
+
+<!-- 这里可以添加JavaScript或其他页面底部信息 -->
+</body>
+</html>

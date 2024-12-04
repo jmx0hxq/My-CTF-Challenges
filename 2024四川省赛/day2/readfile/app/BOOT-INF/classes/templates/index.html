@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .container input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .container button {
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .container button:hover {
+            background-color: #0056b3;
+        }
+        .container p {
+            color: #333;
+            margin: 10px 0 0;
+        }
+    </style>
+</head>
+<body>
+<h1>Code Leak Challenge</h1>
+<div class="container">
+    <p>Flag 在 /flag</p>
+    <input type="text" id="url" placeholder="输入 URL">
+    <button onclick="sendRequest()">提交</button>
+    <p id="result"></p>
+</div>
+<script>
+    function sendRequest() {
+        const url = document.getElementById("url").value;
+        fetch("/read", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "url="+encodeURIComponent(url)
+        })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("result").textContent = data;
+            })
+            .catch(error => {
+                document.getElementById("result").textContent = "Error: " + error;
+            });
+    }
+</script>
+</body>
+</html>

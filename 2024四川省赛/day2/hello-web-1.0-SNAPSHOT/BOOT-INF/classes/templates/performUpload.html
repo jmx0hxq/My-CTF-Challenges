@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>文件上传</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .upload-form {
+            display: inline-block;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #f5f5f5;
+            padding: 10px;
+            text-align: center;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        a:hover {
+            color: red;
+        }
+        #jumpButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #jumpButton:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h1>文件上传页面</h1>
+
+<div class="upload-form">
+    <form method="POST" action="/performUpload" enctype="multipart/form-data">
+        <label for="fileInput">选择要上传的文件:</label>
+        <input type="file" id="fileInput" name="file" required /><br/><br/>
+        <input type="submit" value="上传文件" />
+    </form>
+</div>
+
+<div class="footer">
+    <p>版权所有 &copy; 2024 </p>
+</div>
+
+</body>
+</html>

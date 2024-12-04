@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>easy_java_serialize</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            white-space: pre-wrap; /* 处理换行 */
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Java反序列化</h1>
+    <pre>
+    @PostMapping({"/read"})
+    @ResponseBody
+    public String serialize(@RequestParam(name = "data") String data) {
+        try {
+            StringBuilder output = new StringBuilder();
+            if(data.isEmpty()){
+                return "参数为空";
+            }
+            output.append(data).append("\n");
+            ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(Base64.getDecoder().decode(data)));
+            ois.readObject();
+            ois.close();
+            output.append(Flag.result);
+            return output.toString();
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+    //view-source
+</pre>
+    <form method="post">
+        <div>
+            <label for="data"></label><input type="text" id="data" name="data" placeholder="请输入" required>
+        <button type="button" id="executeButton">点点看</button>
+        </div>
+    </form>
+</div>
+<!--
+package org.example.main.common;
+
+import java.io.*;
+
+public class Flag implements Serializable {
+    private static final long serialVersionUID = 1;
+    private String methodName;
+    private boolean arg;
+    private String command;
+
+    public static String result;
+
+    public Flag() {
+    }
+
+    private String sn() throws IOException, InterruptedException {
+        if(arg) {
+            ProcessBuilder builder = new ProcessBuilder("bash", "-c", command);
+            Process process = builder.start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            StringBuilder output = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+            int exitCode = process.waitFor();
+            reader.close();
+            if(exitCode != 0) {
+                output.append("error command: ").append(command);
+            }
+            return output.toString();
+        } else {
+            return command;
+        }
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException, InterruptedException {
+        in.defaultReadObject();
+        if(methodName.equals("sn")) {
+            result = sn();
+        }
+    }
+}
+
+-->
+
+
+<script src="/js/jquery.min.js"></script>
+<script>
+    document.getElementById("executeButton").addEventListener("click", async () => {
+        const data = document.getElementById("data").value;
+
+        // 构建要发送的数据对象
+        const requestData = {
+            data: data
+        };
+
+        $.ajax({
+            url: '/read',
+            type: 'POST',
+            data: requestData,
+            success: function (data) {
+                alert(data)
+            },
+            error: function (xhr) {
+                console.error(xhr);
+                const statusCode = xhr.status;
+
+                if (statusCode === 500) {
+                    alert("xxx");
+                } else {
+                    alert("xxx");
+                }
+            }
+        });
+    });
+
+
+
+</script>
+</body>
+</html>

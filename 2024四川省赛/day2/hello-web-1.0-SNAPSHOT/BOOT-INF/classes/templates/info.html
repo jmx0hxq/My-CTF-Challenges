@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Info Page</title>
+</head>
+<body>
+<h1>IP Information</h1>
+<p>IP Address: <span th:text="${#escapeXml.escape(ipAddress)}"></span></p>
+<p>User Agent: <span th:text="${#escapeXml.escape(userAgent)}"></span></p>
+<p>Method: <span th:text="${method}"></span></p>
+</body>
+</html>
